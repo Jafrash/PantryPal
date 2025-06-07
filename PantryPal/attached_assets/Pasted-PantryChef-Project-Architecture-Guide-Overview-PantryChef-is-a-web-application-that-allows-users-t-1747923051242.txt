@@ -1,0 +1,89 @@
+PantryChef Project Architecture Guide
+Overview
+PantryChef is a web application that allows users to take photos of their available ingredients, and then uses AI (simulated) to identify them and suggest matching recipes. The application features a responsive UI design with a mobile-first approach, and is built using modern web technologies.
+
+User Preferences
+Preferred communication style: Simple, everyday language.
+
+System Architecture
+The application follows a modern full-stack architecture:
+
+Frontend: React-based SPA with Tailwind CSS for styling
+Backend: Express.js server
+Database: PostgreSQL database with Drizzle ORM
+State Management: React Query for server state management
+UI Components: shadcn/ui component library based on Radix UI primitives
+Bundling: Vite for frontend bundling and ESBuild for backend bundling
+Architecture Decisions:
+Monorepo Structure: The project uses a monorepo approach with client, server, and shared code directories to simplify development and ensure type safety across the stack.
+Server-Side Rendering: The application does not use SSR, opting instead for a client-side rendered SPA with API endpoints.
+Database Access: Drizzle ORM is used for type-safe database access.
+API Design: RESTful API design pattern for simplicity and compatibility.
+Key Components
+Frontend
+React Application: Located in client/src, contains all UI components and client-side logic.
+Pages: Main pages include Home (image upload) and Results (recipe suggestions).
+Components:
+ImageUpload: Handles taking/uploading photos of ingredients
+DietaryPreferences: Allows users to specify dietary requirements
+ProcessingScreen: Shows loading state while processing images
+RecipeCard and RecipeDetails: Display recipe information
+UI Components: Reusable components from shadcn/ui
+Backend
+Express Server: Located in server/index.ts, handles HTTP requests and serves the frontend.
+Routes: API routes for ingredient detection and recipe suggestions.
+Services:
+yolo.ts: Simulates AI ingredient detection from images
+recipeMatching.ts: Finds recipes that match detected ingredients
+Storage: Database interface for accessing recipes, ingredients, and user data.
+Shared
+Database Schema: Defined in shared/schema.ts using Drizzle and Zod for validation.
+Types: Shared type definitions for recipes, ingredients, and API requests/responses.
+Data Flow
+Ingredient Detection Flow:
+
+User uploads an image on the frontend
+Image is sent to the /api/detect-ingredients endpoint
+Server processes the image (currently simulated) and identifies ingredients
+Detected ingredients are returned to the client and stored in session
+Recipe Suggestion Flow:
+
+Based on detected ingredients, dietary preferences, and max cooking time
+Server queries the database for matching recipes
+Recipes are scored based on ingredient match percentage
+Top matching recipes are returned to the client
+User Feedback Flow:
+
+Users can provide feedback on recipe suggestions
+Feedback is stored for future recommendation improvements
+External Dependencies
+Frontend Dependencies
+React and React DOM
+React Query for data fetching
+Radix UI for accessible UI primitives
+Tailwind CSS for styling
+Lucide React for icons
+React Hook Form for form handling
+Backend Dependencies
+Express.js for the web server
+Drizzle ORM for database access
+Multer for file uploads
+Zod for validation
+Deployment Strategy
+The application is configured to be deployed on Replit with the following setup:
+
+Development Mode: npm run dev runs the server with hot reloading
+Production Build:
+npm run build bundles both the client and server
+Vite builds the frontend into dist/public
+ESBuild bundles the server code into dist/index.js
+Production Start: npm run start runs the bundled server
+Database Provisioning
+The application requires a PostgreSQL database, which should be provisioned in the Replit environment. The database connection string should be provided via the DATABASE_URL environment variable.
+
+Future Considerations
+Real AI Integration: Replace the simulated AI with actual ingredient detection using a computer vision model.
+User Authentication: Add user accounts to save preferences and favorite recipes.
+Recipe Saving: Allow users to save recipes for future reference.
+Enhanced Recommendations: Improve the recipe matching algorithm based on user feedback.
+Performance Optimization: Add caching for common database queries and API responses.

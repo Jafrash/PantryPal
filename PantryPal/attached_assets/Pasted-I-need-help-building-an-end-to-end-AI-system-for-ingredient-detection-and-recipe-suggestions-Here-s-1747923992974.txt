@@ -1,0 +1,71 @@
+I need help building an end-to-end AI system for ingredient detection and recipe suggestions. Here's the detailed problem statement:
+
+PROBLEM STATEMENT:
+Build a system that can:
+1. Detect ingredients from food images
+2. Generate personalized recipe suggestions based on detected ingredients
+3. Consider dietary restrictions and preferences
+4. Provide detailed cooking instructions
+
+TECHNICAL REQUIREMENTS:
+
+1. Image Processing & Ingredient Detection:
+- Use a combination of YOLOv8 and Faster R-CNN for accurate ingredient detection
+- Implement image preprocessing for better detection accuracy
+- Handle multiple ingredients in a single image
+- Support real-time detection
+
+2. Recipe Generation & Suggestions:
+- Integrate with either Gemini AI or OpenAI's API for recipe generation
+- Consider factors like:
+  * Available ingredients
+  * User's dietary restrictions (vegetarian, vegan, gluten-free, etc.)
+  * Cooking skill level
+  * Available cooking equipment
+  * Time constraints
+  * Nutritional requirements
+
+3. System Architecture:
+- Backend: Node.js/Express.js
+- Frontend: React with TypeScript
+- Database: PostgreSQL for storing recipes and user preferences
+- API Integration: RESTful endpoints for:
+  * Image upload and processing
+  * Recipe generation
+  * User preferences management
+  * Recipe storage and retrieval
+
+4. Key Features:
+- Real-time ingredient detection
+- Recipe customization based on available ingredients
+- Step-by-step cooking instructions
+- Nutritional information
+- Alternative ingredient suggestions
+- Recipe scaling
+- User feedback system
+- Save favorite recipes
+- Share recipes with others
+
+5. User Experience:
+- Clean, intuitive interface
+- Mobile-responsive design
+- Progress tracking
+- Error handling and user feedback
+- Loading states and animations
+
+6. Additional Considerations:
+- Handle edge cases (poor image quality, unknown ingredients)
+- Implement caching for frequently used recipes
+- Add rate limiting for API calls
+- Ensure security for user data
+- Optimize for performance
+
+Please help me implement this system, starting with:
+1. Setting up the project structure
+2. Implementing the ingredient detection system
+3. Integrating with AI for recipe generation
+4. Building the user interface
+5. Setting up the database schema
+6. Implementing the API endpoints
+
+Focus on creating a scalable, maintainable, and user-friendly solution.
